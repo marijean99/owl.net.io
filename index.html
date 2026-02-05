@@ -11,14 +11,14 @@
       width: 100vw;
       height: 100vh;
       background: #c2dff5;
-      font-family: helvetica, pretendard;
+      font-family: futura, helvetica, pretendard-bold;
       color: #111;
       overflow-y: auto;
       overflow-x: hidden;
     }
-  /* ---- boo button ---- */
-    #surprise {
-      position: absolute;
+  /* ---- qna button ---- */
+    #qna {
+      position: fixed;
       bottom: 60px;
       left: 50%;
       transform: translateX(-50%);
@@ -29,12 +29,31 @@
       font-size: clamp(12px, 3.5vw, 16px);
       cursor: pointer;
       opacity: 0.8;
+      z-index: 20;
     }
 
-    #surprise:hover {
+    #qna:hover {
       opacity: 1;
       background: rgba(0,0,0,0.05);
     }
+
+    .text-wrap {
+      min-height: 110vh;
+      padding: 30vh 10vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .paragraph {
+      z-index: 3;
+      font-family: helvetica;
+      font-size: clamp(8px, 3.5vw, 12px);
+      line-height: 1.7;
+      max-width: 420px;
+      color: #909090;
+    }
+    
 
     /* background layer */
     .bg-layer {
@@ -46,48 +65,35 @@
 
     .float {
       position: absolute;
-      animation: float 14s ease-in-out infinite;
+      animation: float 1s ease-in-out infinite;
       opacity: 0.9;
     }
 
-    .f1 { top: 12%; left: 18%; width: 100px; animation-duration: 16s; }
-    .f2 { top: 42%; right: 12%; width: 100px; animation-duration: 20s; }
-    .f3 { bottom: 18%; left: 38%; width: 100px; animation-duration: 18s; }
-    .f4 { top: 8%; right: 30%; width: 100px; animation-duration: 22s; }
+    .f1 { top: 20%; left: 18%; width: 110px; }
+    .f2 { top: 47%; right: 20%; width: 130px; }
+    .f3 { bottom: 16%; left: 28%; width: 110px;}
+    .f4 { top: 5%; right: 10%; width: 110px;}
 
-    @keyframes float {
+    /*@keyframes float {
       0% { transform: translateY(0); }
       50% { transform: translateY(-22px); }
       100% { transform: translateY(0); }
-    }
+    }*/
 
     /* content layer */
     main {
-
+    z-index: 2;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     pointer-events: none;
-     } #surprise,
+     } #qna,
      .contact,
      .list,
      .item {
     pointer-events: auto;
   }
 
-    .text-wrap {
-      min-height: 200vh;
-      padding: 30vh 10vw;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-    }
-
-    .paragraph {
-      font-size: clamp(12px, 3.5vw, 16px);
-      line-height: 1.7;
-      max-width: 420px;
-      color: #222;
-    }
+    
 
     @media (max-width: 768px) {
       .text-wrap {
@@ -98,7 +104,8 @@
       .p2 { display: none; }
 
       .paragraph {
-        font-size: clamp(10px, 3.5vw, 14px);
+        font-family: helvetica;
+        font-size: clamp(8px, 3.5vw, 10px);
         text-align: center;
         margin: 0 auto;
       }
@@ -137,6 +144,7 @@
     color: inherit;
     text-decoration: none;
     display: inline-block;
+    padding: 2px 0;
     }
 
     .list li:hover {
@@ -144,21 +152,23 @@
       text-decoration: underline;
     }
 
-    .hardware {
+    .front {
       top: 40px;
       left: 40px;
     }
 
+    .location {
+      top: 310px;
+      right: 60px;
+    }
+
     .member {
-      top: 40px;
-      right: 100px;
+      bottom: 300px;
+      left: 100px;
       text-align: left;
     }
 
-    .files {
-      top: 280px;
-      right: 60px;
-    }
+
 
     /* ---- floating items ---- */
     .item {
@@ -172,9 +182,6 @@
       pointer-events: auto;
       cursor: pointer;
     }
-
-    .item:hover {
-      transform: scale(1.05) rotate(-1deg);
     }
 
     /* ---- description text ---- */
@@ -237,7 +244,7 @@
         This is Network PostOffice's new digital space. <br>
         Please take your time to explore.
       </p>
-      <p class="paragraph p2">
+      <p class="paragraph p1">
         Electronic Network Love.<br>
         One time dance with me,<br>
         Two times fly with me.<br>
@@ -245,14 +252,14 @@
     </section>
   </main>
 
-  <!-- Hardware -->
-    <nav class="list hardware">
+  <!-- front -->
+    <nav class="list front">
       <h3>Our World,</h3>
       <ul>
-        <li>Drink Gift</li>
-        <li>(so)lucky draw</li>
-        <li>Gatcha!</li>
-        <li>and...</li>
+        <li><a href="drink.html">Drink Gift</li>
+        <li><a href="draw.html">(so)lucky draw</li>
+        <li><a href="gatcha.html">Gatcha!</li>
+        <li><a href="and.html">and...</li>
       </ul>
     </nav>
 
@@ -268,18 +275,20 @@
     </nav>
 
     <!-- Files -->
-    <nav class="list files">
+    <nav class="list location">
       <h3>Location</h3>
       <ul>
-        <li>서울시 마포구 
-        <br>Network Post Office</br>
-        다이버시티</br></li>
+       <a href="https://naver.me/Fr7pREcL">
+        <li>서울시 마포구 서교동 346-21
+        <br> 다이버시티
+        <br> Network Post Office</br>
+        </br></li></a>
       </ul>
     </nav>
 
 
-    <!-- Surprise -->
-    <a href="https://spin-spin.com/OwlneT"><button id="surprise">QnA</button></a>
+    <!-- qna -->
+    <a href="https://spin-spin.com/OwlneT"><button id="qna">QnA</button></a>
 
 
     <!-- Contact -->
