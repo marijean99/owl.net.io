@@ -2,168 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Owl.net</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Archive</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      width: 100vw;
-      height: 100vh;
       background: #c2dff5;
-      font-family: helvetica, pretendard, apple sd gothic neo;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
       color: #111;
-      overflow: hidden;
-    }
-
-    #canvas {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* ---- text lists ---- */
-    .list {
-      position: absolute;
-      font-size: 12px;
       line-height: 1.6;
     }
 
+    #canvas {
+      width: 100%;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .list {
+      font-size: 13px;
+    }
+
     .list h3 {
-      margin: 0 0 6px 0;
+      margin: 0 0 8px 0;
       font-weight: normal;
       text-decoration: underline;
     }
 
     .list ul {
-      
       list-style: none;
       padding: 0;
       margin: 0;
     }
 
     .list a {
-   color: inherit;
-   text-decoration: none;
-  }
-    .list a:visited {
-    color: inherit;
+      color: inherit;
+      text-decoration: none;
     }
 
-    .list li a {
-    color: inherit;
-    text-decoration: none;
-    display: inline-block;
+    .list li {
+      margin-bottom: 4px;
     }
 
     .list li:hover {
-      opacity: 1;
       text-decoration: underline;
     }
 
-    .hardware {
-      top: 40px;
-      left: 40px;
-    }
-
-    .member {
-      top: 40px;
-      right: 100px;
-      text-align: left;
-    }
-
-    .files {
-      top: 280px;
-      right: 60px;
-    }
-
-    /* ---- floating items ---- */
-    .item {
-      position: absolute;
-      transition: transform 0.3s ease;
+    .items {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .item img {
       width: 80px;
-      display: block;
-      pointer-events: auto;
       cursor: pointer;
     }
 
-    .item:hover {
-      transform: scale(1.05) rotate(-1deg);
-    }
-
-    /* ---- description text ---- */
     .description {
-      position: absolute;
-      left: 50%;
-      top: 45%;
-      transform: translate(-50%, -50%);
-      width: 260px;
       font-size: 12px;
-      line-height: 1.5;
       opacity: 0.8;
     }
 
-    /* ---- boo button ---- */
     #surprise {
-      position: absolute;
-      bottom: 60px;
-      left: 50%;
-      transform: translateX(-50%);
+      align-self: center;
       background: transparent;
       border: 1px solid #111;
       border-radius: 999px;
       padding: 6px 14px;
       font-size: 12px;
       cursor: pointer;
-      opacity: 0.8;
-    }
-
-    #surprise:hover {
-      opacity: 1;
-      background: rgba(0,0,0,0.05);
-    }
-
-    /* ---- contact ---- */
-    .contact {
-      position: absolute;
-      bottom: 40px;
-      left: 40px;
-      font-size: 12px;
-      font-weight: bold;
-      .list li {
-      text-decoration: none;
-     }
-      .list li:hover {
-      text-decoration-line: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-  }
     }
 
     .contact a {
+      display: block;
+      font-size: 12px;
       color: inherit;
       text-decoration: none;
-      display: block;
-      opacity: 0.85;
+      margin-top: 6px;
     }
 
     .contact a:hover {
-      opacity: 1;
       text-decoration: underline;
+    }
+
+    /* ----- Mobile optimization ----- */
+    @media (max-width: 480px) {
+      #canvas {
+        padding: 20px 16px 32px;
+        gap: 32px;
+      }
+
+      .list {
+        font-size: 14px;
+      }
+
+      .list h3 {
+        margin-bottom: 10px;
+      }
+
+      .items {
+        gap: 12px;
+      }
+
+      .item img {
+        width: 72px;
+      }
+
+      #surprise {
+        margin-top: 12px;
+      }
     }
   </style>
 </head>
 <body>
-
   <div id="canvas">
 
-    <!-- Hardware -->
-    <nav class="list hardware">
+    <nav class="list">
       <h3>Our World,</h3>
       <ul>
         <li>Drink Gift</li>
@@ -173,73 +132,38 @@
       </ul>
     </nav>
 
-    <!-- MEMBER -->
-    <nav class="list member">
+    <nav class="list">
       <h3>Networklove (4)</h3>
       <ul>
-        <a href="https://instagram.com/joshu_acoustic"><li>JOSHUA</li></a>
-        <a href="https://instagram.com/junhui_moon"><li>JUN</li></a>
-        <a href="https://instagram.com/xuminghao_o"><li>THE8</li></a>
-        <a href="https://instagram.com/vernonline"><li>VERNON</li></a>
+        <li><a href="https://instagram.com/joshu_acoustic">JOSHUA</a></li>
+        <li><a href="https://instagram.com/junhui_moon">JUN</a></li>
+        <li><a href="https://instagram.com/xuminghao_o">THE8</a></li>
+        <li><a href="https://instagram.com/vernonline">VERNON</a></li>
       </ul>
     </nav>
 
-    <!-- Files -->
-    <nav class="list files">
+    <nav class="list">
       <h3>Location</h3>
       <ul>
-        <li>서울시 마포구 
-        <br>Network Post Office</br>
-        다이버시티</br></li>
+        <li>서울시 마포구<br>Network Post Office<br>다이버시티</li>
       </ul>
     </nav>
 
-    <!-- Floating images -->
-    <div class="item" style="left:20vw; top:15vh;">
-      <img src="owl-blue.png" alt="">
+    <div class="items">
+      <div class="item"><img src="https://placehold.co/80x80" alt=""></div>
+      <div class="item"><img src="https://placehold.co/80x80" alt=""></div>
+      <div class="item"><img src="https://placehold.co/80x80" alt=""></div>
     </div>
 
-    <div class="item" style="left:55vw; top:18vh;">
-      <img src="owl-white.png" alt="">
-    </div>
+    <div class="description">Welcome! This is</div>
 
-    <div class="item" style="left:70vw; top:55vh;">
-      <img src="owl-logo.png" alt="">
-    </div>
+    <button id="surprise">surprise me</button>
 
-    <div class="item" style="left:25vw; top:65vh;">
-      <img src=".png" alt="">
-    </div>
-
-    <!-- Description -->
-    <div class="description">
-      Welcome! This is Network Postoffice
-    </div>
-
-    <!-- Surprise -->
-    <button id="surprise">boo!</button>
-
-    <!-- Contact -->
     <div class="contact">
       <a href="https://x.com/nwloversclub">X</a>
-      <br>
       <a href="https://spin-spin.com/OwlneT">spin-spin</a>
     </div>
 
   </div>
-
-  <script>
-    const surpriseBtn = document.getElementById("surprise");
-    const items = document.querySelectorAll(".item");
-
-    surpriseBtn.addEventListener("click", () => {
-      items.forEach(item => {
-        const x = Math.random() * 80;
-        const y = Math.random() * 80;
-        item.style.left = x + "vw";
-        item.style.top = y + "vh";
-      });
-    });
-  </script>
 </body>
 </html>
