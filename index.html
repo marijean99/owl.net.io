@@ -1,27 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Owl.net</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
+     body {
       margin: 0;
       width: 100vw;
       height: 100vh;
       background: #c2dff5;
-      font-family: helvetica, pretendard, apple sd gothic neo;
+      font-family: helvetica, pretendard;
       color: #111;
       overflow: hidden;
     }
 
-    #canvas {
+    /* background layer */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .float {
+      position: absolute;
+      animation: float 14s ease-in-out infinite;
+      opacity: 0.9;
+    }
+
+    .f1 { top: 12%; left: 18%; width: 100px; animation-duration: 16s; }
+    .f2 { top: 42%; right: 12%; width: 100px; animation-duration: 20s; }
+    .f3 { bottom: 18%; left: 38%; width: 100px; animation-duration: 18s; }
+    .f4 { top: 8%; right: 30%; width: 100px; animation-duration: 22s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-22px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* content layer */
+    main {
       position: relative;
-      width: 100%;
-      height: 100%;
+      z-index: 1;
+    }
+
+    .text-wrap {
+      min-height: 200vh;
+      padding: 30vh 10vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .paragraph {
+      font-size: clamp(12px, 3.5vw, 16px);
+      line-height: 1.7;
+      max-width: 420px;
+      color: #222;
+    }
+
+    @media (max-width: 768px) {
+      .text-wrap {
+        grid-template-columns: 1fr;
+        padding: 22vh 8vw;
+      }
+
+      .p2 { display: none; }
+
+      .paragraph {
+        font-size: clamp(10px, 3.5vw, 14px);
+        text-align: center;
+        margin: 0 auto;
+      }
+    
     }
 
     /* ---- text lists ---- */
@@ -103,7 +156,7 @@
       top: 45%;
       transform: translate(-50%, -50%);
       width: 260px;
-      font-size: clamp(12px, 3.5vw, 16px);
+      font-size: clamp(10px, 3.5vw, 16px);
       line-height: 1.5;
       opacity: 0.8;
     }
@@ -118,7 +171,7 @@
       border: 1px solid #111;
       border-radius: 999px;
       padding: 6px 14px;
-      font-size: clamp(12px, 3.5vw, 16px);
+      font-size: clamp(10px, 3.5vw, 16px);
       cursor: pointer;
       opacity: 0.8;
     }
@@ -160,9 +213,29 @@
 </head>
 <body>
 
-  <div id="canvas">
+  <div class="bg-layer">
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbHxs40%2FdJMcafZLxTg%2FAAAAAAAAAAAAAAAAAAAAAPdXBTNELN2NaaGEvCENyWUex2exfXyf1U05B74pwp-T%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1772290799%26allow_ip%3D%26allow_referer%3D%26signature%3DPvzyt5CZ%252F%252BHl%252FnAKSAa9y2XL%252F7o%253D" class="float f1" alt="owl blue" />
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FcclLBI%2FdJMcagEpyju%2FAAAAAAAAAAAAAAAAAAAAAFnEpylQd4U_v_C0WkyG5H8HqpVjf0D_OOYpGkvfSGP-%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1772290799%26allow_ip%3D%26allow_referer%3D%26signature%3DkQh%252BXMTVXCedlthwusts12iTQe8%253D" class="float f2" alt="owl white" />
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbJDOlz%2FdJMcagRVXHB%2FAAAAAAAAAAAAAAAAAAAAAPwnxD2f4VWmUG8agG1CK6AaQP-C8eaJdPepo9VcjC_G%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1772290799%26allow_ip%3D%26allow_referer%3D%26signature%3DjmZEPWTRyhUgB4OTTB8fCkgkpGE%253D" class="float f3" alt="owl light" />
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbhxpTE%2FdJMcagRVXHA%2FAAAAAAAAAAAAAAAAAAAAANcA1fuOqyVrjnX60IdZjFsk3ELPh8QiCI99iu6HKvYQ%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1772290799%26allow_ip%3D%26allow_referer%3D%26signature%3DAS40kHhR4mgcJN%252BJuv14%252B9jn%252FHI%253D" class="float f4" alt="owl logo" />
+  </div>
 
-    <!-- Hardware -->
+  <main>
+    <section class="text-wrap">
+      <p class="paragraph p1">
+        Welcome, to the Owl.net <br>
+        This is Network PostOffice's new digital space. <br>
+        Please take your time to explore.
+      </p>
+      <p class="paragraph p2">
+        Electronic Network Love.<br>
+        One time dance with me,<br>
+        Two times fly with me.<br>
+      </p>
+    </section>
+  </main>
+
+  <!-- Hardware -->
     <nav class="list hardware">
       <h3>Our World,</h3>
       <ul>
@@ -211,10 +284,6 @@
       <img src=".png" alt="">
     </div>
 
-    <!-- Description -->
-    <div class="description">
-      Welcome! This is
-    </div>
 
     <!-- Surprise -->
     <button id="surprise">surprise me</button>
@@ -226,20 +295,5 @@
       <a href="https://spin-spin.com/OwlneT">spin-spin</a>
     </div>
 
-  </div>
-
-  <script>
-    const surpriseBtn = document.getElementById("surprise");
-    const items = document.querySelectorAll(".item");
-
-    surpriseBtn.addEventListener("click", () => {
-      items.forEach(item => {
-        const x = Math.random() * 80;
-        const y = Math.random() * 80;
-        item.style.left = x + "vw";
-        item.style.top = y + "vh";
-      });
-    });
-  </script>
 </body>
 </html>
